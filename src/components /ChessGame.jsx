@@ -25,3 +25,4 @@ function ChessGame() {
     </div>
   );
 }
+export default ChessGame;
