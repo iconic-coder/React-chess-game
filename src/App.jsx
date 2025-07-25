@@ -1,33 +1,42 @@
-import { useState } from 'react'
-import './App.css'
-import React from 'react'
+import { useState } from "react";
+import React from "react";
+import Navbar from "./Components/Navbar";
+import Instructions from "./Components/GameInstructions";
+import StartMenu from "./Components/StartMenu";
+import ScoreBoard from "./Components/Scoreboard";
+import ChessGame from "./Components/ChessGame";
 
-function App() {
-  const [count, setCount] = useState(0)
+//import GameSquare from "./myLogic/GameSquare";
+import './App.css'
+
+
+function App () {
+
+  const [gameStarted, setGameStarted] = useState(false);
+  const startGame = function () {
+  setGameStarted(true);
+  };
+  const [player1score, setPlayer1Score] = useState(0);
+  const [player2score, setPlayer2Score] = useState(0);
+
+  function  updateScore(winner) {
+    if (winner === "player1"){
+      setPlayer1Score(player1score + 1);
+    }else {
+      setPlayer2Score(player2score + 1);
+    }
+  }
+  if (!gameStarted) {
+    return <StartMenu onStart={startGame} />;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+     <Navbar/>
+     <Instructions/>
+     <ChessGame updateScore={updateScore}  />
+      <ScoreBoard player1score={player1score} player2score={player2score}   />
+    </div>
   )
 }
 

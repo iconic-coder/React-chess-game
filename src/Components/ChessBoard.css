@@ -1,0 +1,24 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 60px);
+  grid-template-rows: repeat(8, 60px);
+  width: fit-content;
+  border: 3px solid #222;
+  margin: 20px auto;
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.light {
+  background-color: #131212;
+}
+
+.dark {
+  background-color: #b58863;
+}
